@@ -1,5 +1,5 @@
 import { BasePage } from "./BasePage";
-import {Page} from "@playwright/test";
+import {Page, expect} from "@playwright/test";
 import { HomePage } from "./HomePage";
 import { RegisterPage } from "./RegisterPage";
 
@@ -35,5 +35,9 @@ export class LoginPage extends BasePage {
         await this.page.fill(this.signUpComponent.emailTxtField, `${email}`)
         await this.page.locator(this.signUpComponent.signUpBtn).click()
         return await BasePage.create(RegisterPage, this.page);
+    }
+
+    async verifyLoginSuccess(name: string) {
+        await expect(this.page.getByText(`Logged in as ${name}`)).toBeVisible()
     }
 }

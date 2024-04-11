@@ -4,64 +4,19 @@ import { HomePage } from "../page-objects/HomePage";
 import { LoginPage } from "../page-objects/LoginPage";
 import { chromium } from "@playwright/test";
 import { CommonUtils } from "../utils/CommonUtils";
-test.describe("Verify register feature for new user", () => {
-  let uniqueFirstName: string
-  let uniqueLastName: string
-  let uniqueAddress: string
-  let email: string
-  let userName: string
-  let uniqueMobileNumber: string
-  let uniqueZipCode: string 
-  let state: string
-  let city: string
-  let pwd: string
-  test.beforeEach(async ({ page }) => { 
-     uniqueFirstName = CommonUtils.uniqueName("QE_");
-     uniqueLastName = CommonUtils.uniqueName("LN_")
-     state = "90000"
-     city = "Temptation City"
-     uniqueAddress = CommonUtils.uniqueAdress()
-     uniqueZipCode = CommonUtils.uniqueZipCode()
-     uniqueMobileNumber = CommonUtils.uniquePhoneNumber()
-     pwd = CommonUtils.generatePassword(6)
-     userName = CommonUtils.uniqueName("UN");
-     email = CommonUtils.uniqueEmail(5);
-  });
+test.describe("Verify register feature for new user", async () => {
 
-  test("Verify user can register with valid credentials", async ({ page }) => {
-    const homePage = await BasePage.create(HomePage, page);
-    await homePage.navigateToHomePage();
-    const loginPage = await homePage.navigateToLoginPage();
-    const registerPage = await loginPage.signUpNewUser(
-      userName,
-      email
-    );
+  test.beforeEach('Open home page', async ({page}) => {
+    await page.goto("https://automationexercise.com")
+  })
 
-    await registerPage
-      .verifyNameIsNotEmpty(userName)
-      .then(() => registerPage.verifyEmailIsNotEmpty(email));
-
-    await registerPage
-          .inputPassword(pwd)
-    await registerPage
-          .inputFirstName(uniqueFirstName)
-    await registerPage
-          .inputLastName(uniqueLastName)
-    await registerPage
-          .inputAddress(uniqueAddress)
-    await registerPage
-          .inputState(state)
-    await registerPage
-          .inputCity(city)
-    await registerPage
-          .inputZipCode(uniqueZipCode)
-    await registerPage
-          .inputPhoneNumber(uniqueMobileNumber)
-    await registerPage
-          .clickCreateAccount()
-    
-    await registerPage
-          .verifyCreateAccountSucces()
-    
+  test('Verify login with new credentials', async ({ page }) => {
+      let validUserName = "automationtester"
+      let email = "automationtester@gmail.com"
+      let password = "abc123!@#"
+      const homePage = new HomePage(page);
+      const loginPage = await homePage.navigateToLoginPage();
+      await loginPage.login(email, password);
+      await loginPage.verifyLoginSuccess(validUserName);    
   });
 });

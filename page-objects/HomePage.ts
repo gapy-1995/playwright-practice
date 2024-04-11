@@ -3,7 +3,7 @@ import {Page} from "@playwright/test";
 import { LoginPage } from "./LoginPage";
 export class HomePage extends BasePage {
     readonly navBarLocator = {
-        signUpandLoginBtn: this.page.locator('a[href="/login"]')
+        signUpandLoginBtn: 'a[href="/login"]'
     }
     constructor(page:Page) {
         super(page)
@@ -13,8 +13,8 @@ export class HomePage extends BasePage {
         await this.page.goto("https://automationexercise.com/")
     }
     
-    public async navigateToLoginPage() {
-        await this.navBarLocator.signUpandLoginBtn.click()
+    async navigateToLoginPage() {
+        await this.page.locator(this.navBarLocator.signUpandLoginBtn).click()
         return await BasePage.create(LoginPage,this.page);
     }
 }

@@ -2,19 +2,12 @@
 
 ## Todo List
 
-- [ ] Create test framework follow TDD
-  - [ ] Implement Log handler
-- [ ] Implement TDD 
-- [ ] Implement Several test case (10 cases API + 10 case UI)
-  - Smoke test cases have prefix SM_, API is API_, Regression is RG_
-- [ ] Setup API test, Smoke test suites, Regression test
+- [x] Create test framework follow BDD
+  - [x] Implement Log handler
+- [x] Implement BDD 
+- [x] Implement Several test case (2 cases API + 2 case UI)
+  - tag mechanism
 - [ ] Setup CI/CD pipeline for that suites
-- [ ] Setup Environment testing.
-- [ ] POC test with message queue (cover all test scenario). test dir: tests/messageQueue
-- [ ] Setup test report.
-  - [ ] Create Fault tolerance repo 
-    - Priority test failed and diagnosis test failure 
-    - Counting the number test failed with same rootcause
 
 ---
 ## How to
