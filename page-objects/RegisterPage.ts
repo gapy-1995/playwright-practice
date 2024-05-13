@@ -91,7 +91,7 @@ export class RegisterPage extends BasePage{
     }
 
     public async clickCreateAccount(): Promise<RegisterPage> {
-        await this.page.locator(this.accInfo.createAccountBtn).click()
+        await this.enhanceClick(this.accInfo.createAccountBtn)
         return this;
     }
 

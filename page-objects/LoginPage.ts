@@ -38,6 +38,6 @@ export class LoginPage extends BasePage {
     }
 
     async verifyLoginSuccess(name: string) {
-        await expect(this.page.getByText(`Logged in as ${name}`)).toBeVisible()
+        await expect(this.page.getByText(`Logged in as ${name}`)).toBeVisible();
     }
 }

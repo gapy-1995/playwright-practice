@@ -1,5 +1,5 @@
-import { APIRequestContext } from "@playwright/test";
-import { BaseService } from "./BaseService";
+import {APIRequestContext} from "@playwright/test";
+import {BaseService} from "./BaseService";
 
 
 export class ProductService extends BaseService {
@@ -11,20 +11,18 @@ export class ProductService extends BaseService {
     }
 
     async getAllProductList() {
-        const response = await this.sendGetRequest(this.productListAPI)
-        return response
+        return await this.sendGetRequest(this.productListAPI)
     }
 
     async getAllBrandList() {
-        const response = await this.sendGetRequest(this.brandListAPI)
-        return response
+        return await this.sendGetRequest(this.brandListAPI)
     }
 
     async searchProduct(productName: string) {
         const params = {
             'search_product': productName
         }
-        const response = await this.sendPostRequestForFormData(this.searchProductAPI, params)
-        return response
+        return await this.sendPostRequestForFormData(this.searchProductAPI, params)
     }
 }
+
